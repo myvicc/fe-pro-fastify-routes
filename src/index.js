@@ -21,9 +21,10 @@ fastify.post("/uppercase", (request, reply) => {
   if (body.toLowerCase().includes(word.toLowerCase())) {
     reply.status(403);
     return answer;
-  }
+  } else {
     reply.status(200);
     return body.toUpperCase();
+  }
 })
 
 fastify.post("/lowercase", (request, reply) => {
@@ -33,9 +34,10 @@ fastify.post("/lowercase", (request, reply) => {
   if (body.toLowerCase().includes(word.toLowerCase())) {
     reply.status(403);
     return answer;
-  }
+  } else {
     reply.status(200);
     return body.toLowerCase();
+  }
 })
 
 const routeUser = "/user"
@@ -44,9 +46,10 @@ fastify.get(`${routeUser}/:id`, (request, reply) => {
   const user = Object.keys(users).find((idUser) => +idUser === id);
   if (user) {
     return user;
-  }
+  } else {
     reply.status(400);
     return answer;
+  }
 })
 
 fastify.get("/users", (request) => {
