@@ -13,9 +13,10 @@ fastify.register(import('@fastify/cookie'));
 
 export default fastify;
 
+const word = "fuck";
+const answer = "unresolved";
+
 fastify.post("/uppercase", (request, reply) => {
-  const word = "fuck";
-  const answer = "unresolved";
   const { body } = request;
   if (body.toLowerCase().includes(word.toLowerCase())) {
     reply.status(403);
@@ -31,13 +32,10 @@ fastify.post("/lowercase", (request, reply) => {
 
   if (body.toLowerCase().includes(word.toLowerCase())) {
     reply.status(403);
-    return {
-      message: "unresolved"
-    }
+    return answer;
   }
     reply.status(200);
     return body.toLowerCase();
-
 })
 
 const routeUser = "/user"
@@ -48,9 +46,7 @@ fastify.get(`${routeUser}/:id`, (request, reply) => {
     return user;
   }
     reply.status(400);
-    return {
-      message: "User not exist"
-    }
+    return answer;
 })
 
 fastify.get("/users", (request) => {
