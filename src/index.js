@@ -16,7 +16,6 @@ export default fastify;
 const word = "fuck";
 const answerBadWord = "unresolved";
 const answerNoUser = 'User not exist';
-let user;
 
 fastify.post("/uppercase", (request, reply) => {
   const { body } = request;
@@ -44,10 +43,13 @@ fastify.post("/lowercase", (request, reply) => {
 const routeUser = '/user';
 fastify.get(`${routeUser}/:id`, (request, reply) => {
   const { id } = request.params;
-  const arrayIdPlusUser = Object.entries(users).find(([userId]) => +userId === id);
-  user = arrayIdPlusUser ? arrayIdPlusUser[1] : 0;
 
-    return user;
+  if (users.hasOwnProperty(id)) {
+    return users[id];
+  } else {
+    reply.status(400);
+    return answerNoUser;
+  }
 })
 
 fastify.get("/users", (request) => {
