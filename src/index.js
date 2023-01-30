@@ -47,13 +47,7 @@ fastify.get(`${routeUser}/:id`, (request, reply) => {
   const arrayIdPlusUser = Object.entries(users).find(([userId]) => +userId === id);
   user = arrayIdPlusUser ? arrayIdPlusUser[1] : 0;
 
-  if (!arrayIdPlusUser) {
-    reply.status(400);
-    return answerNoUser;
-
-  } else {
     return user;
-  }
 })
 
 fastify.get("/users", (request) => {
