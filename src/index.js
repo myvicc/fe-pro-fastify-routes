@@ -55,7 +55,7 @@ let result;
 fastify.get("/users", (request) => {
   const { filter, value } = request.query;
   if (filter && value) {
-    result =  Object.values(users).filter((user) => user[filter] === value);
+    result =  Object.values(users).filter((user) => user[filter].toString() === value.toString());
   } else  {
     result = Object.values(users);
   }
