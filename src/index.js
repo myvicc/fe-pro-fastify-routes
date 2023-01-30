@@ -55,7 +55,7 @@ fastify.get(`${routeUser}/:id`, (request, reply) => {
 fastify.get("/users", (request) => {
   const { filter, value } = request.query;
   if (filter && value) {
-    return Object.values(users).filter((user) => user.hasOwnProperty(filter) && user[filter] === value );
+    return Object.values(users).filter((user) => user[filter] === value);
   } else
-    return Object.values(users);
+  return Object.values(users);
 })
