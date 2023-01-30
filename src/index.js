@@ -43,9 +43,9 @@ fastify.post("/lowercase", (request, reply) => {
 const routeUser = '/user';
 fastify.get(`${routeUser}/:id`, (request, reply) => {
   const { id } = request.params;
+  const arrayIdPlusUser = Object.entries(users).find(([userId]) => +userId === id);
+  const user = arrayIdPlusUser ? arrayIdPlusUser[1] : 0;
 
-  const arrayUserPlusId = Object.entries(users).find(([userId]) => +userId === id);
-  const user = arrayUserPlusId[1];
   if (user) {
     return user;
   } else {
